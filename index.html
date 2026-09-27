@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>孟依然 · 产品经理作品集</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>M</text></svg>">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@600;700;900&display=swap">
+<style>
+  :root {
+    --primary: #0f4c5c;
+    --primary-light: #1a6b7e;
+    --accent: #e36414;
+    --accent-light: #f4845f;
+    --bg: #f8f9fa;
+    --bg-alt: #eef2f4;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-2: #5a6a7a;
+    --border: #e2e8ec;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248,249,250,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 32px;
+  }
+  .nav-logo { font-weight: 700; font-size: 15px; color: var(--primary); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-2); font-size: 13px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero {
+    background: var(--primary);
+    color: #fff;
+    padding: 130px 32px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -15%; top: -20%;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(227,100,20,0.12) 0%, transparent 70%);
+  }
+  .hero-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block; font-size: 12px; color: var(--accent-light);
+    letter-spacing: 2px; margin-bottom: 20px;
+    border: 1px solid rgba(227,100,20,0.4);
+    padding: 4px 14px; border-radius: 20px;
+  }
+  .hero h1 {
+    font-size: 46px; font-weight: 900; line-height: 1.25;
+    margin-bottom: 18px; letter-spacing: -0.5px;
+  }
+  .hero h1 .accent { color: var(--accent-light); }
+  .hero-sub {
+    font-size: 16px; color: rgba(255,255,255,0.7);
+    max-width: 600px; line-height: 1.8; margin-bottom: 32px;
+  }
+  .hero-contact {
+    display: flex; gap: 32px; flex-wrap: wrap;
+    font-size: 14px; color: rgba(255,255,255,0.85);
+  }
+  .hero-contact a { color: #fff; text-decoration: none; }
+  .hero-contact a:hover { color: var(--accent-light); }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  section { padding: 64px 0; }
+  .section-label {
+    font-size: 12px; color: var(--accent); font-weight: 600;
+    letter-spacing: 2px; margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 28px; font-weight: 700; color: var(--primary);
+    margin-bottom: 36px; line-height: 1.3;
+  }
+
+  /* 关于我 */
+  .about-grid {
+    display: grid; grid-template-columns: 180px 1fr; gap: 28px; align-items: start;
+  }
+  .about-avatar {
+    width: 200px; aspect-ratio: 3/4;
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(15,76,92,0.15);
+  }
+  .about-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .about-text p { margin-bottom: 14px; color: var(--text-2); font-size: 15px; line-height: 1.9; }
+  .about-text strong { color: var(--text); }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tag {
+    background: var(--bg-alt); color: var(--primary);
+    padding: 5px 14px; border-radius: 6px; font-size: 12px; font-weight: 500;
+  }
+
+  /* 项目卡片 */
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; margin-bottom: 28px; overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+  .project-card:hover { box-shadow: 0 8px 30px rgba(15,76,92,0.08); }
+  .project-hero { padding: 28px 32px; border-bottom: 1px solid var(--border); }
+  .project-badge {
+    display: inline-block; font-size: 11px; padding: 3px 10px;
+    border-radius: 4px; margin-right: 6px; margin-bottom: 10px;
+    background: var(--bg-alt); color: var(--primary); font-weight: 500;
+  }
+  .project-badge.highlight { background: #fde8dd; color: var(--accent); }
+  .project-hero h3 {
+    font-size: 20px; color: var(--primary); margin-bottom: 6px; font-weight: 700;
+  }
+  .project-meta { font-size: 13px; color: var(--text-2); margin-bottom: 12px; }
+  .project-summary { font-size: 14px; color: var(--text-2); line-height: 1.8; }
+  .project-body { padding: 28px 32px; }
+  .project-body h4 {
+    font-size: 13px; color: var(--accent); margin-bottom: 10px;
+    font-weight: 600; letter-spacing: 0.5px;
+  }
+  .project-body h4:not(:first-child) { margin-top: 24px; }
+  .project-body p, .project-body li {
+    font-size: 14px; color: var(--text-2); line-height: 1.9;
+  }
+  .project-body ul { padding-left: 18px; margin-top: 6px; }
+
+  .metrics-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px;
+  }
+  .metric-box {
+    background: var(--bg); border-radius: 8px; padding: 14px; text-align: center;
+  }
+  .metric-num { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .metric-label { font-size: 11px; color: var(--text-2); margin-top: 2px; }
+
+  /* 项目图片 */
+  .project-images {
+    display: grid; gap: 16px; margin-top: 20px;
+  }
+  .project-images.cols-2 { grid-template-columns: 1fr 1fr; }
+  .project-images.cols-1 { grid-template-columns: 1fr; }
+  .project-img-wrap {
+    border-radius: 10px; overflow: hidden; background: var(--bg-alt);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+  }
+  .project-img-wrap img {
+    width: 100%; height: 100%; object-fit: contain;
+  }
+  .project-img-caption {
+    font-size: 12px; color: var(--text-2); text-align: center; margin-top: 8px;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--primary); color: #fff; padding: 56px 32px;
+  }
+  .footer-inner { max-width: 1080px; margin: 0 auto; text-align: center; }
+  .footer-inner h2 { font-size: 26px; margin-bottom: 12px; font-weight: 700; }
+  .footer-inner p { color: rgba(255,255,255,0.55); margin-bottom: 28px; font-size: 14px; }
+  .contact-row {
+    display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+  }
+  .contact-item { font-size: 14px; color: rgba(255,255,255,0.8); }
+  .contact-item a { color: var(--accent-light); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero { padding: 90px 24px 56px; }
+    .hero h1 { font-size: 30px; }
+    .about-grid { grid-template-columns: 1fr; gap: 24px; }
+    .about-avatar { width: 140px; }
+    .metrics-row { grid-template-columns: 1fr; }
+    .project-images.cols-2 { grid-template-columns: 1fr; }
+    section { padding: 48px 0; }
+    .section-title { font-size: 22px; }
+    .project-hero, .project-body { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">Meng<span>.</span>Portfolio</a>
+    <div class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#projects">项目</a>
+      <a href="#contact">联系</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-tag">2026 届秋招 · 产品经理</div>
+    <h1>用产品思维<br>做好用的<span class="accent">软件</span></h1>
+    <p class="hero-sub">
+      覆盖移动端 APP、医疗设备 UI、B 端数据平台、AI 工具等多类型产品。
+      擅长从 0 到 1 定义需求、输出 PRD 与高保真原型，推动跨团队落地上线。
+    </p>
+    <div class="hero-contact">
+      <span>电话：181-9215-1556</span>
+      <span>邮箱：18192151556@163.com</span>
+      <span>坐标：深圳</span>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="section-label">ABOUT</div>
+    <h2 class="section-title">关于我</h2>
+    <div class="about-grid">
+      <div class="about-avatar">
+        <img src="assets/avatar.jpg" alt="孟依然">
+      </div>
+      <div class="about-text">
+        <p>
+          我是<strong>孟依然</strong>，香港大学电气与电子工程硕士在读，华东理工大学信息工程本科。
+          过去一年多，我先后在亿杉医疗和良信电器担任产品实习生，
+          完整参与过移动端 APP、医疗设备交互、B 端数据平台、AI 检测工具等多种类型的产品设计工作。
+        </p>
+        <p>
+          我习惯<strong>先理解业务再写需求</strong>——不管是尼泊尔医院里的临床医生，还是国内母婴 APP 的孕妈用户，
+          都会先搞清楚他们真正的痛点和使用场景，再动手画原型。对数据敏感，能独立做 SQL 取数和基础实验分析。
+        </p>
+        <div class="tag-row">
+          <span class="tag">需求分析</span>
+          <span class="tag">PRD 撰写</span>
+          <span class="tag">Figma / Axure</span>
+          <span class="tag">用户研究</span>
+          <span class="tag">SQL 数据提取</span>
+          <span class="tag">蓝牙 / 离线同步</span>
+          <span class="tag">跨部门推进</span>
+          <span class="tag">竞品分析</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="background: var(--bg-alt);">
+  <div class="container">
+    <div class="section-label">PROJECTS</div>
+    <h2 class="section-title">项目作品</h2>
+
+    <!-- 项目1: Nora -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge highlight">医疗设备</span>
+          <span class="project-badge">UI 设计</span>
+          <span class="project-badge">交互流程</span>
+        </div>
+        <h3>Nora 经皮耳迷走神经刺激（taVNS）治疗设备 — UI 与交互设计</h3>
+        <div class="project-meta">产品设计 · 2026.06 – 2026.08 · 亿杉医疗</div>
+        <p class="project-summary">
+          负责治疗设备从开机、耳夹检测、参数设置到治疗中优化建议的完整交互流程设计，
+          输出中英文双语高保真原型，覆盖 8 种设备状态与全部边界场景。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>设计背景</h4>
+        <p>taVNS 治疗设备需配合耳夹传感器实时监测生理信号，并根据信号质量动态调整刺激参数。
+        设备屏幕小、物理按键少，要求交互逻辑清晰、状态反馈明确，确保医护和患者都能快速理解当前状态。</p>
+
+        <h4>核心设计</h4>
+        <ul>
+          <li>梳理完整状态机：开机 → 耳夹检测 → 设备就绪 → 参数编辑 → 治疗中 → 暂停 / 优化建议 → 完成</li>
+          <li>设计颜色编码体系：绿色=正常、红色=异常、黄色=警告、蓝色=治疗中</li>
+          <li>完成中英文双语 UI 高保真设计与交互流程文档，迭代 3 版后进入开发</li>
+        </ul>
+
+        <h4>设计原型</h4>
+        <div class="project-images cols-2">
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/nora/device-ready.png" alt="Nora设备就绪界面">
+            </div>
+            <div class="project-img-caption">设备就绪主界面 · 生理反馈实时监测 + 治疗参数设置</div>
+          </div>
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/nora/optimization.png" alt="Nora优化建议界面">
+            </div>
+            <div class="project-img-caption">参数优化建议界面 · 当前方案 vs 建议方案对比确认</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目2: Bilimonitor -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge highlight">海外临床</span>
+          <span class="project-badge">Android APP</span>
+          <span class="project-badge">从0到1</span>
+        </div>
+        <h3>Bilimonitor 新生儿黄疸监测 APP（尼泊尔）— 临床数据采集工具</h3>
+        <div class="project-meta">移动端产品 · 2026.04 – 2026.08 · 亿杉医疗 · 已上线</div>
+        <p class="project-summary">
+          针对尼泊尔临床数据依赖纸质记录、网络不稳定的问题，从 0 设计移动端数据采集 APP，
+          配合黄疸仪硬件实现蓝牙连接、离线采集、断网续传。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>解决的问题</h4>
+        <ul>
+          <li>当地医院网络环境差，需支持离线采集后批量同步</li>
+          <li>医护人员录入负担重——纸质记录 60 项字段，容易出错且无法追溯</li>
+          <li>需连接蓝牙黄疸仪硬件，读取实时测量数据并关联患者信息</li>
+        </ul>
+
+        <h4>核心方案</h4>
+        <ul>
+          <li>协同临床医生梳理 60 项采集字段，按「患者信息 → 检测数据 → 血液验证」分组设计录入流程</li>
+          <li>设计蓝牙连接流程：设备搜索 → 配对连接 → 状态实时显示，支持最多 3 台设备同时连接</li>
+          <li>规划离线采集与断网续传链路：数据本地持久化，网络恢复后自动批量同步</li>
+          <li>输出完整 PRD 和 Android 高保真原型，推动研发 3 周内完成首版上线</li>
+        </ul>
+
+        <h4>上线成果</h4>
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="metric-num">1000+</div>
+            <div class="metric-label">样本标准化采集</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">-55%</div>
+            <div class="metric-label">单份采集时长</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">-75%</div>
+            <div class="metric-label">录入错误率</div>
+          </div>
+        </div>
+
+        <h4>产品界面</h4>
+        <div class="project-images cols-2">
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/bilimonitor/bt-connected.png" alt="蓝牙设备连接">
+            </div>
+            <div class="project-img-caption">设备管理页 · 蓝牙搜索与黄疸仪配对连接</div>
+          </div>
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/bilimonitor/test-result.png" alt="检测结果页">
+            </div>
+            <div class="project-img-caption">检测结果页 · 患者信息 + 测量数据 + 皮肤照片</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目3: 母婴APP -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge highlight">C 端</span>
+          <span class="project-badge">母婴健康</span>
+          <span class="project-badge">已上线</span>
+        </div>
+        <h3>母婴健康 APP — 胎心监测、孕期记录与商城服务</h3>
+        <div class="project-meta">C 端产品 · 2026.04 – 2026.08 · 亿杉医疗 · 已上线</div>
+        <p class="project-summary">
+          面向孕期家庭的胎心监测与健康管理 APP，负责胎心监测核心功能从 0 到 1 设计，
+          同时参与商城全链路迭代，补全「健康监测 → 孕期记录 → 商城消费」完整使用链路。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>核心工作</h4>
+        <ul>
+          <li>负责胎心监测核心功能从 0 到 1 设计，完成高保真原型输出，推动基础版本按期上线</li>
+          <li>设计胎心仪蓝牙连接与实时监测流程：连接配对 → 胎心数据实时显示 → 胎动记录 → 监测报告生成</li>
+          <li>参与商城全链路迭代，完成商品浏览、搜索、下单等交易流程设计并推动上线</li>
+          <li>规划海外社交平台分享能力，支持将孕期数据一键分享至主流社交平台</li>
+          <li>针对蓝牙频繁断连问题，设计主动重连与异常提示方案，协同研发完成兼容性迭代</li>
+        </ul>
+
+        <h4>产品界面</h4>
+        <div class="project-images cols-3" style="grid-template-columns: repeat(3, 1fr); gap: 16px;">
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/mom-baby/home.png" alt="APP首页">
+            </div>
+            <div class="project-img-caption">首页 · 孕期进度 + 设备连接入口</div>
+          </div>
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/mom-baby/mall-home.jpg" alt="商城首页">
+            </div>
+            <div class="project-img-caption">商城首页 · 商品搜索 + 设备租赁 + 专家咨询</div>
+          </div>
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/mom-baby/fhr-monitor.jpg" alt="胎心监测过程">
+            </div>
+            <div class="project-img-caption">胎心监测 · 实时胎心率 + 胎动记录 + 趋势图表</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目4: AI图像检测 -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge highlight">AI 工具</span>
+          <span class="project-badge">B 端系统</span>
+          <span class="project-badge">从0到1</span>
+        </div>
+        <h3>AI 图像检测工具 — 晶圆缺陷检测系统</h3>
+        <div class="project-meta">产品设计 · 2025.12 – 2026.02 · 个人项目</div>
+        <p class="project-summary">
+          面向多模态图像检测场景，梳理用户从数据上传、任务配置到结果查看的完整操作路径，
+          完成产品流程、功能原型与 PRD 设计。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>核心工作</h4>
+        <ul>
+          <li>梳理用户操作路径：数据上传 → 模型选择 → 参数配置 → 检测执行 → 结果查看</li>
+          <li>设计左右分栏布局：左侧模型/参数/控制区，右侧原图与检测结果对比区</li>
+          <li>协同研发完成系统部署与检测闭环落地，实现检测精度 98%、时延 <0.5s</li>
+        </ul>
+
+        <h4>系统界面</h4>
+        <div class="project-images cols-1">
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/ai-detection/wafer-defect.png" alt="AI晶圆缺陷检测系统">
+            </div>
+            <div class="project-img-caption">YOLOv11 晶圆缺陷检测系统 · 模型配置 + 原图/结果对比</div>
+          </div>
+        </div>
+
+        <h4>成果</h4>
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="metric-num">98%</div>
+            <div class="metric-label">检测精度</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">&lt;0.5s</div>
+            <div class="metric-label">单张检测时延</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">+80%</div>
+            <div class="metric-label">相较人工流程效率提升</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目5: 多参数监测平台 -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge highlight">科研平台</span>
+          <span class="project-badge">数据可视化</span>
+          <span class="project-badge">上海市科委项目</span>
+        </div>
+        <h3>多参数监测数据平台 — 在线电子鼻上位机系统</h3>
+        <div class="project-meta">产品设计 · 2024.11 – 2025.03 · 上海市科委项目</div>
+        <p class="project-summary">
+          参与科研数据平台规划，梳理设备数据从采集、传输、分析、存储到追溯的全链路，
+          设计关键指标的数据可视化与查询模块。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>核心工作</h4>
+        <ul>
+          <li>梳理设备数据全链路：采集 → 传输 → 分析 → 存储 → 追溯</li>
+          <li>设计采样波形图实时可视化模块，支持 16 通道数据同步展示</li>
+          <li>设计设备状态监控面板：实时温度、湿度、采样时间、阶段进度等关键指标</li>
+          <li>协同多团队推进平台功能落地，支持监测数据全周期留存与追溯</li>
+        </ul>
+
+        <h4>系统界面</h4>
+        <div class="project-images cols-1">
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/multi-parameter/electronic-nose.png" alt="电子鼻上位机系统">
+            </div>
+            <div class="project-img-caption">在线版电子鼻上位机 · 采样波形实时监控 + 环境参数面板</div>
+          </div>
+        </div>
+
+        <h4>成果</h4>
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="metric-num">+50%</div>
+            <div class="metric-label">设备操作效率提升</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">16 通道</div>
+            <div class="metric-label">同步数据采集</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">全周期</div>
+            <div class="metric-label">数据留存与追溯</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目6: 内部管理系统 -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge">B 端系统</span>
+          <span class="project-badge">跨部门协作</span>
+        </div>
+        <h3>内部业务管理系统搭建 — 跨部门协作平台</h3>
+        <div class="project-meta">B 端产品 · 2026.06 – 2026.08 · 亿杉医疗</div>
+        <p class="project-summary">
+          对接运营、供应链、财务、制造中心及研发 5 个部门，从业务流程梳理到需求分级，
+          推动首期项目按里程碑交付。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>核心工作</h4>
+        <ul>
+          <li>深入 5 个部门一线，梳理现有业务流程与痛点，输出完整业务流程图</li>
+          <li>基于业务价值、实施成本和依赖关系进行需求分级，排定优先级矩阵</li>
+          <li>组织跨部门需求同步会与评审，协调功能排期，解决需求分歧</li>
+        </ul>
+
+        <h4>成果</h4>
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="metric-num">5 个</div>
+            <div class="metric-label">对接部门</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">-30%</div>
+            <div class="metric-label">客服/仓储/业务工作量</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">里程碑</div>
+            <div class="metric-label">首期按期交付</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-inner">
+    <h2>期待与你聊聊</h2>
+    <p>2026 届秋招产品经理 · 欢迎随时联系</p>
+    <div class="contact-row">
+      <div class="contact-item">电话：<a href="tel:18192151556">181-9215-1556</a></div>
+      <div class="contact-item">邮箱：<a href="mailto:18192151556@163.com">18192151556@163.com</a></div>
+      <div class="contact-item">坐标：深圳</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
