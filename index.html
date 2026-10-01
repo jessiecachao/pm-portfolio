@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>孟依然 · 硬件产品经理作品集</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>M</text></svg>">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@600;700;900&display=swap">
+<style>
+  :root {
+    --primary: #0f4c5c;
+    --primary-light: #1a6b7e;
+    --accent: #e36414;
+    --accent-light: #f4845f;
+    --bg: #f8f9fa;
+    --bg-alt: #eef2f4;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-2: #5a6a7a;
+    --border: #e2e8ec;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248,249,250,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 32px;
+  }
+  .nav-logo { font-weight: 700; font-size: 15px; color: var(--primary); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-2); font-size: 13px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero {
+    background: var(--primary);
+    color: #fff;
+    padding: 130px 32px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -15%; top: -20%;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(227,100,20,0.12) 0%, transparent 70%);
+  }
+  .hero-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block; font-size: 12px; color: var(--accent-light);
+    letter-spacing: 2px; margin-bottom: 20px;
+    border: 1px solid rgba(227,100,20,0.4);
+    padding: 4px 14px; border-radius: 20px;
+  }
+  .hero h1 {
+    font-size: 46px; font-weight: 900; line-height: 1.25;
+    margin-bottom: 18px; letter-spacing: -0.5px;
+  }
+  .hero h1 .accent { color: var(--accent-light); }
+  .hero-sub {
+    font-size: 16px; color: rgba(255,255,255,0.7);
+    max-width: 620px; line-height: 1.8; margin-bottom: 32px;
+  }
+  .hero-contact {
+    display: flex; gap: 32px; flex-wrap: wrap;
+    font-size: 14px; color: rgba(255,255,255,0.85);
+  }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  section { padding: 64px 0; }
+  .section-label {
+    font-size: 12px; color: var(--accent); font-weight: 600;
+    letter-spacing: 2px; margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 28px; font-weight: 700; color: var(--primary);
+    margin-bottom: 36px; line-height: 1.3;
+  }
+
+  .about-grid {
+    display: grid; grid-template-columns: 180px 1fr; gap: 28px; align-items: start;
+  }
+  .about-avatar {
+    width: 180px; aspect-ratio: 3/4;
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(15,76,92,0.15);
+  }
+  .about-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .about-text p { margin-bottom: 14px; color: var(--text-2); font-size: 15px; line-height: 1.9; }
+  .about-text strong { color: var(--text); }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tag {
+    background: var(--bg-alt); color: var(--primary);
+    padding: 5px 14px; border-radius: 6px; font-size: 12px; font-weight: 500;
+  }
+
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; margin-bottom: 28px; overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+  .project-card:hover { box-shadow: 0 8px 30px rgba(15,76,92,0.08); }
+  .project-hero { padding: 28px 32px; border-bottom: 1px solid var(--border); }
+  .project-badge {
+    display: inline-block; font-size: 11px; padding: 3px 10px;
+    border-radius: 4px; margin-right: 6px; margin-bottom: 10px;
+    background: var(--bg-alt); color: var(--primary); font-weight: 500;
+  }
+  .project-badge.highlight { background: #fde8dd; color: var(--accent); }
+  .project-hero h3 {
+    font-size: 20px; color: var(--primary); margin-bottom: 6px; font-weight: 700;
+  }
+  .project-meta { font-size: 13px; color: var(--text-2); margin-bottom: 12px; }
+  .project-summary { font-size: 14px; color: var(--text-2); line-height: 1.8; }
+  .project-body { padding: 28px 32px; }
+  .project-body h4 {
+    font-size: 13px; color: var(--accent); margin-bottom: 10px;
+    font-weight: 600; letter-spacing: 0.5px;
+  }
+  .project-body h4:not(:first-child) { margin-top: 24px; }
+  .project-body p, .project-body li {
+    font-size: 14px; color: var(--text-2); line-height: 1.9;
+  }
+  .project-body ul { padding-left: 18px; margin-top: 6px; }
+
+  .metrics-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px;
+  }
+  .metric-box {
+    background: var(--bg); border-radius: 8px; padding: 14px; text-align: center;
+  }
+  .metric-num { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .metric-label { font-size: 11px; color: var(--text-2); margin-top: 2px; }
+
+  .project-images {
+    display: grid; gap: 16px; margin-top: 20px;
+  }
+  .project-images.cols-2 { grid-template-columns: 1fr 1fr; }
+  .project-images.cols-1 { grid-template-columns: 1fr; }
+  .project-img-wrap {
+    border-radius: 10px; overflow: hidden; background: var(--bg-alt);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+  }
+  .project-img-wrap img {
+    width: 100%; height: 100%; object-fit: contain;
+  }
+  .project-img-caption {
+    font-size: 12px; color: var(--text-2); text-align: center; margin-top: 8px;
+  }
+
+  footer {
+    background: var(--primary); color: #fff; padding: 56px 32px;
+  }
+  .footer-inner { max-width: 1080px; margin: 0 auto; text-align: center; }
+  .footer-inner h2 { font-size: 26px; margin-bottom: 12px; font-weight: 700; }
+  .footer-inner p { color: rgba(255,255,255,0.55); margin-bottom: 28px; font-size: 14px; }
+  .contact-row {
+    display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+  }
+  .contact-item { font-size: 14px; color: rgba(255,255,255,0.8); }
+  .contact-item a { color: var(--accent-light); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero { padding: 90px 24px 56px; }
+    .hero h1 { font-size: 30px; }
+    .about-grid { grid-template-columns: 1fr; gap: 20px; }
+    .about-avatar { width: 140px; }
+    .metrics-row { grid-template-columns: 1fr; }
+    .project-images.cols-2 { grid-template-columns: 1fr; }
+    section { padding: 48px 0; }
+    .section-title { font-size: 22px; }
+    .project-hero, .project-body { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">Meng<span>.</span>Portfolio</a>
+    <div class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#projects">项目</a>
+      <a href="#contact">联系</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-tag">2026 届秋招 · 硬件产品经理</div>
+    <h1>软硬协同，<br>做好用的<span class="accent">硬件产品</span></h1>
+    <p class="hero-sub">
+      专注医疗硬件与消费电子配套软件产品设计，覆盖设备交互、蓝牙连接、数据采集、
+      离线存储与云端同步等软硬协同全流程。熟悉串口通信、传感器数据采集与设备控制。
+    </p>
+    <div class="hero-contact">
+      <span>电话：181-9215-1556</span>
+      <span>邮箱：18192151556@163.com</span>
+      <span>坐标：深圳</span>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="section-label">ABOUT</div>
+    <h2 class="section-title">关于我</h2>
+    <div class="about-grid">
+      <div class="about-avatar">
+        <img src="assets/avatar.jpg" alt="孟依然">
+      </div>
+      <div class="about-text">
+        <p>
+          我是<strong>孟依然</strong>，香港大学电气与电子工程硕士在读，华东理工大学信息工程本科。
+          具备软硬件交叉背景——既能做硬件配套软件的产品设计，也理解串口通信、传感器采集、
+          继电器控制等底层技术原理。
+        </p>
+        <p>
+          过去一年多，我在亿杉医疗负责胎心监护仪、经皮黄疸仪等医疗硬件的配套软件产品设计，
+          独立完成过电子鼻设备上位机软件开发，熟悉「设备连接 → 数据采集 → 可视化 → 存储同步」
+          的完整软硬协同链路。
+        </p>
+        <div class="tag-row">
+          <span class="tag">软硬交互设计</span>
+          <span class="tag">蓝牙配对与数据传输</span>
+          <span class="tag">串口通信 RS485/USB</span>
+          <span class="tag">离线存储与断网续传</span>
+          <span class="tag">传感器数据采集</span>
+          <span class="tag">Qt/C++ 上位机开发</span>
+          <span class="tag">Figma / Axure</span>
+          <span class="tag">PRD 撰写</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="background: var(--bg-alt);">
+  <div class="container">
+    <div class="section-label">PROJECTS</div>
+    <h2 class="section-title">项目作品</h2>
+
+    <!-- 项目1: Nora治疗设备 -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge highlight">医疗硬件</span>
+          <span class="project-badge">设备UI交互</span>
+          <span class="project-badge">从0到1</span>
+        </div>
+        <h3>Nora 经皮耳迷走神经刺激（taVNS）治疗设备 — 设备 UI 与交互设计</h3>
+        <div class="project-meta">硬件产品 · 2026.06 – 2026.08 · 亿杉医疗</div>
+        <p class="project-summary">
+          负责 taVNS 治疗设备的屏幕 UI 与物理按键交互设计，覆盖耳夹检测、参数设置、
+          治疗监测、优化建议等完整设备状态流程，输出中英文双语高保真原型。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>设计背景</h4>
+        <p>设备需配合耳夹传感器实时监测生理信号，并根据信号质量动态调整刺激参数。
+        设备屏幕小、物理按键少（电源/加减/模式/确认），要求交互逻辑清晰、状态反馈明确，
+        确保医护和患者都能快速理解当前设备状态。</p>
+
+        <h4>核心设计</h4>
+        <ul>
+          <li>梳理完整设备状态机：开机 → 耳夹检测 → 设备就绪 → 参数编辑 → 治疗中 → 暂停/优化建议 → 完成</li>
+          <li>设计颜色编码体系：绿色=正常、红色=异常、黄色=警告、蓝色=治疗中</li>
+          <li>明确每个状态下物理按键的行为与状态转换规则，输出交互流程文档</li>
+          <li>完成中英文双语 UI 高保真设计，迭代 3 版后进入开发实现</li>
+        </ul>
+
+        <h4>设计原型</h4>
+        <div class="project-images cols-2">
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/nora/device-ready.png" alt="Nora设备就绪界面">
+            </div>
+            <div class="project-img-caption">设备就绪主界面 · 生理反馈实时监测 + 治疗参数设置</div>
+          </div>
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/nora/optimization.png" alt="Nora优化建议界面">
+            </div>
+            <div class="project-img-caption">参数优化建议界面 · 当前方案 vs 建议方案对比确认</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目2: 电子鼻系统 -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge highlight">硬件+软件</span>
+          <span class="project-badge">上海市科委项目</span>
+          <span class="project-badge">毕设</span>
+        </div>
+        <h3>基于电子鼻的调味品识别系统 — 设备硬件与上位机软件全栈设计</h3>
+        <div class="project-meta">硬件产品 · 2024.11 – 2025.03 · 本科毕业设计 / 上海市科委项目</div>
+        <p class="project-summary">
+          独立完成 16 通道气体传感器电子鼻设备的系统架构设计与配套上位机软件开发，
+          基于 Qt 框架实现硬件控制、实时数据采集、可视化展示与数据管理。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>系统架构</h4>
+        <p>采用双板架构：控制板（STM32F407）负责继电器、温湿度传感器、串口通信；
+        采集板（STM32H723 + ADC）负责 16 路气体传感器数据采集。
+        PC 上位机通过 USB 转 RS485 与控制板通信，以 10Hz 频率发送查询指令，解析 58 字节数据包。</p>
+
+        <h4>核心工作</h4>
+        <ul>
+          <li>设计 USB 转 RS485 串口通信协议，通过帧头/帧尾/异或校验保障数据传输稳定</li>
+          <li>实现继电器精准控制：驱动气泵、4 路电磁阀、加热丝、风扇等外设，支持 5 阶段采样周期自动化运行</li>
+          <li>开发 16 路传感器实时波形可视化（QCharts）、设备参数配置、继电器状态监测、中英文切换等功能</li>
+          <li>完成 3 类调味品（4 品牌 × 15 组，共 180 组样本）数据采集与 CNN 模型训练</li>
+        </ul>
+
+        <h4>成果</h4>
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="metric-num">97.2%</div>
+            <div class="metric-label">CNN 分类识别准确率</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">16 通道</div>
+            <div class="metric-label">气体传感器同步采集</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">180 组</div>
+            <div class="metric-label">样本数据采集</div>
+          </div>
+        </div>
+
+        <h4>系统架构与设备实物</h4>
+        <div class="project-images cols-2">
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/multi-parameter/system-architecture.png" alt="电子鼻系统架构图">
+            </div>
+            <div class="project-img-caption">系统架构 · 控制板 + 采集板双 MCU 架构</div>
+          </div>
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/multi-parameter/device-photo.jpg" alt="电子鼻设备实物">
+            </div>
+            <div class="project-img-caption">电子鼻设备实物 · 16 通道气体传感器检测装置</div>
+          </div>
+        </div>
+        <div class="project-images cols-1" style="margin-top: 16px;">
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/multi-parameter/electronic-nose.png" alt="上位机软件界面">
+            </div>
+            <div class="project-img-caption">上位机软件界面 · 采样波形实时监控 + 环境参数面板</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目3: 经皮黄疸仪配套APP -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge highlight">硬件配套软件</span>
+          <span class="project-badge">蓝牙连接</span>
+          <span class="project-badge">已上线</span>
+        </div>
+        <h3>经皮黄疸仪配套数据采集 APP（尼泊尔）— 设备-移动端-云端数据链路</h3>
+        <div class="project-meta">硬件配套软件 · 2026.04 – 2026.08 · 亿杉医疗 · 已上线</div>
+        <p class="project-summary">
+          负责经皮黄疸仪（YSJ-103）配套移动端数据采集工具从 0 到 1 设计，
+          覆盖硬件蓝牙连接、测量数据采集、离线存储、后台同步全流程。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>软硬协同流程</h4>
+        <ul>
+          <li>设计蓝牙配对连接流程：APP 搜索附近设备 → 配对连接 → 状态实时显示，支持最多 3 台设备同时连接</li>
+          <li>梳理黄疸仪测量数据与临床字段采集规范：协同医生梳理 60 项采集字段，分组设计录入流程</li>
+          <li>规划离线采集与断网续传链路：测量数据本地持久化，网络恢复后批量同步至云端</li>
+          <li>设计必填校验、字段分组、分步引导，降低医护人员录入负担</li>
+        </ul>
+
+        <h4>上线成果</h4>
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="metric-num">1000+</div>
+            <div class="metric-label">样本标准化采集</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">-55%</div>
+            <div class="metric-label">单份采集时长</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">-75%</div>
+            <div class="metric-label">录入错误率</div>
+          </div>
+        </div>
+
+        <h4>配套软件界面</h4>
+        <div class="project-images cols-2">
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/bilimonitor/bt-connected.png" alt="蓝牙设备连接">
+            </div>
+            <div class="project-img-caption">设备管理页 · 蓝牙搜索与黄疸仪配对连接</div>
+          </div>
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/bilimonitor/test-result.png" alt="检测结果页">
+            </div>
+            <div class="project-img-caption">检测结果页 · 测量数据 + 患者信息 + 皮肤照片</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目4: 胎心监护仪配套APP -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge highlight">硬件配套软件</span>
+          <span class="project-badge">蓝牙连接</span>
+          <span class="project-badge">已上线</span>
+        </div>
+        <h3>胎心监护仪配套移动端 APP — 设备连接与胎心监测全链路</h3>
+        <div class="project-meta">硬件配套软件 · 2026.04 – 2026.08 · 亿杉医疗 · 已上线</div>
+        <p class="project-summary">
+          负责胎心监护仪配套移动端软件从 0 到 1 设计，覆盖蓝牙配对、胎心数据实时传输、
+          监测记录与分享全链路，推动基础版本 3 周内上线。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>核心工作</h4>
+        <ul>
+          <li>设计「设备连接 → 胎心监测 → 孕期记录 → 社交分享」核心使用链路</li>
+          <li>梳理蓝牙配对、胎心数据实时传输、异常断连重连等软硬交互流程</li>
+          <li>设计胎心仪连接与实时监测流程：连接配对 → 胎心数据实时显示 → 胎动记录 → 监测报告生成</li>
+          <li>基于设备使用反馈识别蓝牙频繁断连问题，设计主动重连与异常提示方案，协同研发完成多机型兼容性排查</li>
+          <li>参与商城全链路迭代，打通胎心监护仪用户与医生端医患交互</li>
+        </ul>
+
+        <h4>配套软件界面</h4>
+        <div class="project-images cols-2">
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/mom-baby/home.png" alt="APP首页">
+            </div>
+            <div class="project-img-caption">首页 · 孕期进度 + 设备连接入口</div>
+          </div>
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/mom-baby/fhr-monitor.jpg" alt="胎心监测过程">
+            </div>
+            <div class="project-img-caption">胎心监测 · 实时胎心率 + 胎动记录 + 趋势图表</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目5: AI图像检测 -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge highlight">AI 产品化</span>
+          <span class="project-badge">B 端工具</span>
+        </div>
+        <h3>AI 图像检测工具 — 晶圆缺陷检测系统产品设计</h3>
+        <div class="project-meta">AI 产品 · 2025.12 – 2026.02 · 个人项目</div>
+        <p class="project-summary">
+          面向多模态图像检测场景，梳理用户从数据上传、任务配置到结果查看的完整操作路径，
+          完成产品流程、功能原型与 PRD 设计。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>核心工作</h4>
+        <ul>
+          <li>梳理用户操作路径：数据上传 → 模型选择 → 参数配置 → 检测执行 → 结果查看</li>
+          <li>设计左右分栏布局：左侧模型/参数/控制区，右侧原图与检测结果对比区</li>
+          <li>协同研发完成系统部署与检测闭环落地</li>
+        </ul>
+
+        <h4>系统界面</h4>
+        <div class="project-images cols-1">
+          <div>
+            <div class="project-img-wrap">
+              <img src="assets/ai-detection/wafer-defect.png" alt="AI晶圆缺陷检测系统">
+            </div>
+            <div class="project-img-caption">YOLOv11 晶圆缺陷检测系统 · 模型配置 + 原图/结果对比</div>
+          </div>
+        </div>
+
+        <h4>成果</h4>
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="metric-num">98%</div>
+            <div class="metric-label">检测精度</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">&lt;0.5s</div>
+            <div class="metric-label">单张检测时延</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">+80%</div>
+            <div class="metric-label">相较人工流程效率提升</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目6: 工厂检验平台 -->
+    <div class="project-card">
+      <div class="project-hero">
+        <div>
+          <span class="project-badge highlight">工业硬件</span>
+          <span class="project-badge">交互重构</span>
+        </div>
+        <h3>低压断路器工厂检验配套工作平台 — 交互重构与配置能力建设</h3>
+        <div class="project-meta">工业产品 · 2024.07 – 2024.11 · 上海良信电器</div>
+        <p class="project-summary">
+          面向工厂检验车间场景，基于断路器产品功能检测与设备调试的使用反馈，
+          重构核心交互逻辑并规划自定义配置模块。
+        </p>
+      </div>
+      <div class="project-body">
+        <h4>核心工作</h4>
+        <ul>
+          <li>梳理合作方高频操作问题，识别冗余步骤和交互痛点</li>
+          <li>重构核心交互逻辑，支持断路器各功能模块检测流程配置与检测结果管理</li>
+          <li>输出 PRD、原型及需求说明，协同研发完成开发、测试与迭代</li>
+          <li>完成产品方案标准化封装，支持第三方企业交付</li>
+        </ul>
+
+        <h4>成果</h4>
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="metric-num">-40%</div>
+            <div class="metric-label">核心流程操作步骤</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">标准化</div>
+            <div class="metric-label">支持第三方企业交付</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">多版本</div>
+            <div class="metric-label">配置化检测流程</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-inner">
+    <h2>期待与你聊聊</h2>
+    <p>2026 届秋招硬件产品经理 · 欢迎随时联系</p>
+    <div class="contact-row">
+      <div class="contact-item">电话：<a href="tel:18192151556">181-9215-1556</a></div>
+      <div class="contact-item">邮箱：<a href="mailto:18192151556@163.com">18192151556@163.com</a></div>
+      <div class="contact-item">坐标：深圳</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
